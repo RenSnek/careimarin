@@ -315,7 +315,7 @@ document.addEventListener('keydown', function(event) {
 		careimarinInfo.eye.typeRight = careimarinInfo.eye.typeLeft;
 		careimarinInfo.mouth.type = Object.keys(mouthPaths)[Math.floor(Math.random() * Object.keys(mouthPaths).length)];
 		careimarinInfo.screen.colour = randomHexColour(0, 50);
-		var brightColour = randomHexColour(150, 255);
+		var brightColour = randomHexColour(175, 255);
 		careimarinInfo.eye.colour = brightColour;
 		careimarinInfo.mouth.colour = brightColour;
 		careimarinInfo.accessory.colour = brightColour;
