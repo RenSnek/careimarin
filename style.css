@@ -1,0 +1,19 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+canvas {
+	margin: 0px;;
+	padding: 0px;
+}
+
+#processingCanvas {
+	display: none;
+	border: 1px solid black;
+}
+
+#debugText {
+	display: none;
+}
