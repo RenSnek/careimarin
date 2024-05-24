@@ -99,7 +99,7 @@ loadAccessories();
 var careimarinInfo = {
 	eye : {
 		typeLeft : "simple",
-		typeRight : "simple",
+		typeRight : "squid",
 		gap : 50,
 		colour : "#00ff00",
 		blinkLength : 0.2
@@ -108,7 +108,7 @@ var careimarinInfo = {
 		colour : "#002010"
 	},
 	mouth : {
-		type : "blep",
+		type : "squid",
 		colour : "#00ff00"
 	},
 	accessory : {
@@ -314,5 +314,17 @@ document.addEventListener('keydown', function(event) {
 		careimarinInfo.eye.typeLeft = Object.keys(eyePaths)[Math.floor(Math.random() * Object.keys(eyePaths).length)];
 		careimarinInfo.eye.typeRight = careimarinInfo.eye.typeLeft;
 		careimarinInfo.mouth.type = Object.keys(mouthPaths)[Math.floor(Math.random() * Object.keys(mouthPaths).length)];
+		careimarinInfo.screen.colour = randomHexColour(0,50);
+		var brightColour = randomHexColour(150,255);
+		careimarinInfo.eye.colour = brightColour;
+		careimarinInfo.mouth.colour = brightColour;
+		careimarinInfo.accessory.colour = brightColour;
 	}
 });
+
+function randomHexColour(minDimness=0,maxDimness=255) {
+	var r = Math.floor(Math.random() * (maxDimness - minDimness + 1)) + minDimness;
+	var g = Math.floor(Math.random() * (maxDimness - minDimness + 1)) + minDimness;
+	var b = Math.floor(Math.random() * (maxDimness - minDimness + 1)) + minDimness;
+	return "#" + r.toString(16).padStart(2, '0') + g.toString(16).padStart(2, '0') + b.toString(16).padStart(2,'0');
+}
