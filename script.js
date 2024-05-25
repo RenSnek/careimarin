@@ -148,7 +148,7 @@ function drawImageScale(ctx, img, x, y, width, height, scale = [1, 1], scaleCent
 	let scaledCtx
 	if (drawToCanvas) {
 		scaledCtx = ctx;
-	} {
+	} else {
 		scaledCtx = processingCtx;
 		scaledCtx.clearRect(0, 0, processingCanvas.width, processingCanvas.height);
 	}
