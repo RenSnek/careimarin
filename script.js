@@ -41,7 +41,7 @@ var eyes = {
 	"sad": { img: null, flip: true },
 	"angry": { img: null, flip: true },
 	"nano": { img: null, flip: false },
-}
+};
 
 function loadEyes() {
 	for (var eye in eyePaths) {
@@ -65,7 +65,7 @@ const mouthPaths = {
 	"jagged": "assets/mouths/mouth_jagged.svg",
 };
 
-var mouths = {}
+var mouths = {};
 
 function loadMouths() {
 	for (var mouth in mouthPaths) {
@@ -73,7 +73,7 @@ function loadMouths() {
 		img.src = mouthPaths[mouth];
 		mouths[mouth] = img;
 	}
-};
+}
 
 loadMouths();
 
@@ -81,7 +81,7 @@ loadMouths();
 
 const accessoryPaths = {
 	"glasses": "assets/accessories/acc_glasses.svg"
-}
+};
 
 var accessories = {
 	"glasses": {
@@ -91,7 +91,7 @@ var accessories = {
 		"w": "1.05*(ch+eyegap)",
 		"h": "1.05*(ch+eyegap)"
 	}
-}
+};
 
 function loadAccessories() {
 	for (var accessory in accessoryPaths) {
@@ -145,10 +145,11 @@ function drawImageColour(ctx, img, x, y, width, height, colour, drawToCanvas = t
 
 
 function drawImageScale(ctx, img, x, y, width, height, scale = [1, 1], scaleCenter = [0.5, 0.5], drawToCanvas = true) {
+	let scaledCtx
 	if (drawToCanvas) {
 		scaledCtx = ctx;
-	} else {
-		scaledCtx = processingCtx;
+	} {
+		var scaledCtx = processingCtx;
 		scaledCtx.clearRect(0, 0, processingCanvas.width, processingCanvas.height);
 	}
 
@@ -169,13 +170,13 @@ function drawImageScale(ctx, img, x, y, width, height, scale = [1, 1], scaleCent
 		ctx.stroke();
 	}
 	scaledCtx.restore(); // Restore the last saved state
-};
+}
 
 function drawImage(ctx, img, x, y, width, height, colour = false, scale = [1, 1], scaleCenter = [0.5, 0.5]) {
 	var basicArgs = [x, y, width, height];
 	if (colour) {
 		drawImageColour(ctx, img, ...basicArgs, colour, false);
-		drawImageScale(ctx, processingCanvas, ...basicArgs, scale, scaleCenter)
+		drawImageScale(ctx, processingCanvas, ...basicArgs, scale, scaleCenter);
 	} else {
 		drawImageScale(ctx, img, ...basicArgs, scale, scaleCenter);
 	}
@@ -219,7 +220,7 @@ function drawEyes() {
 		//var lookOffsetXRight = (mousePos[0] - (rightEyeX+eyeWidth/2))*0.02;
 		//var lookOffsetY = (mousePos[1] - eyeHeight)*0.02;
 		drawImage(ctx, imageLeft, leftEyeX, eyeY, eyeWidth, eyeHeight, colour = careimarinInfo.eye.colour, scale = [1, blinkScale], scaleCenter = [0.5, 0.5]);
-		drawImage(ctx, imageRight, rightEyeX, eyeY, eyeWidth, eyeHeight, colour = careimarinInfo.eye.colour, scale = [eyes[careimarinInfo.eye.typeRight].flip?-1:1, blinkScale], scaleCenter = [0.5, 0.5]);
+		drawImage(ctx, imageRight, rightEyeX, eyeY, eyeWidth, eyeHeight, colour = careimarinInfo.eye.colour, scale = [eyes[careimarinInfo.eye.typeRight].flip ? -1 : 1, blinkScale], scaleCenter = [0.5, 0.5]);
 	}
 }
 
@@ -237,7 +238,7 @@ function drawMouth() {
 function drawAccessories() {
 	if (accessories[careimarinInfo.accessory.type].img) {
 		var accessoryInfo = accessories[careimarinInfo.accessory.type];
-		var scope = { cw: canvas.width, ch: canvas.height, eyegap: careimarinInfo.eye.gap }
+		var scope = { cw: canvas.width, ch: canvas.height, eyegap: careimarinInfo.eye.gap };
 		var accessory = accessoryInfo.img;
 		var accessoryWidth = math.evaluate(accessoryInfo.w, scope);
 		var accessoryHeight = accessoryWidth;
