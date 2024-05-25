@@ -29,16 +29,25 @@ const eyePaths = {
 	"circle": "assets/eyes/eye_circle.svg",
 	"squid": "assets/eyes/eye_squid.svg",
 	"sad": "assets/eyes/eye_sad.svg",
-	"angry": "assets/eyes/eye_angry.svg"
+	"angry": "assets/eyes/eye_angry.svg",
+	"nano": "assets/eyes/eye_nano.svg",
 };
 
-var eyes = {}
+var eyes = {
+	"simple": { img: null, flip: true },
+	"man": { img: null, flip: true },
+	"circle": { img: null, flip: true },
+	"squid": { img: null, flip: true },
+	"sad": { img: null, flip: true },
+	"angry": { img: null, flip: true },
+	"nano": { img: null, flip: false },
+}
 
 function loadEyes() {
 	for (var eye in eyePaths) {
 		var img = new Image();
 		img.src = eyePaths[eye];
-		eyes[eye] = img;
+		eyes[eye].img = img;
 	}
 }
 
@@ -197,9 +206,9 @@ function draw() {
 }
 
 function drawEyes() {
-	if (eyes[careimarinInfo.eye.typeLeft] && eyes[careimarinInfo.eye.typeRight]) {
-		var imageLeft = eyes[careimarinInfo.eye.typeLeft];
-		var imageRight = eyes[careimarinInfo.eye.typeRight];
+	if (eyes[careimarinInfo.eye.typeLeft].img && eyes[careimarinInfo.eye.typeRight].img) {
+		var imageLeft = eyes[careimarinInfo.eye.typeLeft].img;
+		var imageRight = eyes[careimarinInfo.eye.typeRight].img;
 		var eyeWidth = canvas.height / 2;
 		var eyeHeight = eyeWidth;
 		var leftEyeX = canvas.width / 2 - (eyeWidth + careimarinInfo.eye.gap / 2);
@@ -210,7 +219,7 @@ function drawEyes() {
 		//var lookOffsetXRight = (mousePos[0] - (rightEyeX+eyeWidth/2))*0.02;
 		//var lookOffsetY = (mousePos[1] - eyeHeight)*0.02;
 		drawImage(ctx, imageLeft, leftEyeX, eyeY, eyeWidth, eyeHeight, colour = careimarinInfo.eye.colour, scale = [1, blinkScale], scaleCenter = [0.5, 0.5]);
-		drawImage(ctx, imageRight, rightEyeX, eyeY, eyeWidth, eyeHeight, colour = careimarinInfo.eye.colour, scale = [-1, blinkScale], scaleCenter = [0.5, 0.5]);
+		drawImage(ctx, imageRight, rightEyeX, eyeY, eyeWidth, eyeHeight, colour = careimarinInfo.eye.colour, scale = [eyes[careimarinInfo.eye.typeRight].flip?-1:1, blinkScale], scaleCenter = [0.5, 0.5]);
 	}
 }
 
